@@ -32,17 +32,12 @@ class EventsGetAPIView(views.APIView):
         to_date = request.query_params.get('to_date', "21000101")
         page_number = request.query_params.get('page_number', "")
 
-        if not category and not location and not keywords and not from_date and not to_date:
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         if category and category not in self.CATEGORIES:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        from_date += "00-"
-        to_date += "00"
-
         response = requests.get(
             "{base_url}?app_key={app_key}&category={category}&location={location}&"
-            "keywords={keywords}&date={from_date}{to_date}&page_number={page_number}".format(
+            "keywords={keywords}&date='{from_date}00-{to_date}00'&page_number={page_number}".format(
                 base_url=self.BASE_URL, category=category, location=location,
                 keywords=keywords, app_key=secrets.EVENTFUL_API_KEY,
                 from_date=from_date, to_date=to_date, page_number=page_number
