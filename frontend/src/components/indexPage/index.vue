@@ -18,9 +18,6 @@ export default {
     
     }
   },
-  created () {
-     // showResults: false
-    },
   components: {
     SearchBlock, ResultBlock
   },

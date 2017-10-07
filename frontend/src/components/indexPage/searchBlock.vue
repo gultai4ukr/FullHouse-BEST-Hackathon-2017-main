@@ -1,7 +1,7 @@
 <template>
   <div class="searchBlock">
     <input v-model="searchQuery" class="searchBox" placeholder="Type anything." @keyup.enter="search"/>
-       <button class="button-go">
+       <button class="button-go" @click="search">
          <img src="../../icons/go.svg" class="icon-go">
          Go
       </button>
