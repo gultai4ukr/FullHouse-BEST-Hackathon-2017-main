@@ -1,53 +1,54 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import VueResource from 'vue-resource'
 
-//Vue.use(VueResource)
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     searchQuery: '',
+    keywordsResults: [],
     showCategory: false,
     showResults: false,
     results: []
   },
   mutations: {
     setQuery (state, value) {
-      console.log('Called setQuery')
       state.searchQuery = value
     },
     setResults (state, value) {
-      console.log('Called setResults')
       state.results = value
     },
     showResultsBlock (state) {
       state.showResults = !state.showResults
+    },
+    setKeywordsResults (state, value) {
+      state.keywordsResults = value
     }
   },
   getters: {
     query (state) {
       return state.searchQuery
     },
-    results (state) {
-      return state.results
-    },
     showResults (state) {
       return state.showResults
+    },
+    keywordsResults (state) {
+      return state.keywordsResults
     }
   },
   actions: {
-    // search ({ commit }, query) {
-    //   const url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}`
-    //   let result = ''
+    searchByKeyword ({ commit }, query) {
+      console.log('called API')
+      const url = `https://konchytsv.pythonanywhere.com/search/events/?keywords=${query}`
+      let result = ''
 
-    //   Vue.http.jsonp(url).then((res => {
-    //     result = res.body
-    //     commit('SET', result)
-    //   })).catch(err => {
-    //     console.log(err)
-    //   })
-    // }
+      Vue.http.get(url).then((res => {
+        result = res.body
+        commit('setKeywordsResults', result)
+      })).catch(err => {
+        console.log(err)
+      })
+    }
   }
 })
 

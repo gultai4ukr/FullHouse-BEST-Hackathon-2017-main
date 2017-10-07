@@ -1,6 +1,6 @@
 <template>
   <div class="searchBlock">
-    <input v-model="searchQuery" class="searchBox" placeholder="Type anything. Literally." @keyup.enter="search"/>
+    <input v-model="searchQuery" class="searchBox" placeholder="Type anything." @keyup.enter="search"/>
        <button class="button-go">
          <img src="../../icons/go.svg" class="icon-go">
          Go
@@ -21,9 +21,7 @@ export default {
   },
   methods: {
     search: function () {
-      this.$store.commit('showResultsBlock')
-      this.$store.commit('setQuery', this.searchQuery)
-      console.log(this.$store.getters.query)
+      this.$store.dispatch('searchByKeyword', this.searchQuery)
     }
   }
 }

@@ -15,6 +15,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+    
     }
   },
   created () {
@@ -25,7 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      showResults: 'showResults'
+      showResults: 'keywordsResults'
     })
   }
 }
