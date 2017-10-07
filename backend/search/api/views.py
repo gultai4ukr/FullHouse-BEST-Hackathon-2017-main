@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 class EventsGetAPIView(views.APIView):
 
-    BASE_URL = "http://api.eventful.com/rest/events/search/"
+    BASE_URL = "http://api.eventful.com/json/events/search/"
 
     CATEGORIES = [
         'music', 'conference', 'comedy', 'learning_education', 'family_fun_kids',
@@ -45,12 +45,12 @@ class EventsGetAPIView(views.APIView):
         )
 
         if response.ok:
-            root = ET.fromstring(response.content)
+            r = response.json()
             events = []
-            for r in root.iter('event'):
+            for e in r['events']['event']:
                 data = {}
                 for key in self.DATA_KEYS:
-                    data[key] = r.find(key).text
+                    data[key] = e[key]
                 events.append(data)
             return Response(events)
         else:
