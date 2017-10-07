@@ -1,1 +1,0 @@
-EVENTFUL_API_KEY = 'VJ2xcprHcmKhks2c'
