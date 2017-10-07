@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <FilterBlock></FilterBlock>
+    <IndexPage> </IndexPage>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import FilterBlock from './components/Filter.vue'
-//import MainBlock from './components/Main.vue'
+import IndexPage from './components/indexPage'
 
 export default {
   name: 'App',
   components: {
-    FilterBlock
+    IndexPage
   }
 }
 </script>
