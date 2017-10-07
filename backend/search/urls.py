@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from search.api.views import EventsListAPIView
+from search.api.views import EventsGetAPIView
 
 urlpatterns = [
-    url(r'^events/$', EventsListAPIView.as_view())
+    url(r'^events/$', EventsGetAPIView.as_view())
 ]
