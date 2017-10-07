@@ -9,10 +9,14 @@
 </template>
 
 <script>
+let initParam = {
+  queryParam: ''
+}
+
 export default {
   data () {
     return {
-      searchQuery: ''
+      searchQuery: '',
     }
   },
   methods: {

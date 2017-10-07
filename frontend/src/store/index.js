@@ -6,7 +6,10 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     searchQuery: '',
-    keywordsResults: []
+    keywordsResults: [],
+    showCategory: false,
+    showResults: false,
+    results: []
   },
   mutations: {
     setQuery (state, value) {
