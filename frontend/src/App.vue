@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <IndexPage> </IndexPage>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import IndexPage from './components/indexPage'
+
 export default {
-  name: 'app'
+  name: 'App',
+  components: {
+    IndexPage
+  }
 }
 </script>
 
