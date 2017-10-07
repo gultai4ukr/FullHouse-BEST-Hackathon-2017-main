@@ -1,20 +1,32 @@
 <template>
   <div class="indexPage">
+    <!-- v-if="categories"-->
     <SearchBlock></SearchBlock>
+    <ResultBlock v-if="showResults"></ResultBlock>
   </div>
 </template>
 
 <script>
+  //Imports
 import SearchBlock from './searchBlock'
+import ResultBlock from './results'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
-      smth: ''
     }
   },
+  created () {
+     // showResults: false
+    },
   components: {
-    SearchBlock
+    SearchBlock, ResultBlock
+  },
+  computed: {
+    ...mapGetters({
+      showResults: 'showResults'
+    })
   }
 }
 </script>
