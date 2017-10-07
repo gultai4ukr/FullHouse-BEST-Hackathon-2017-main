@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <FilterBlock></FilterBlock>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import FilterBlock from './components/Filter.vue'
+//import MainBlock from './components/Main.vue'
+
 export default {
-  name: 'app'
+  name: 'App',
+  components: {
+    FilterBlock
+  }
 }
 </script>
 
