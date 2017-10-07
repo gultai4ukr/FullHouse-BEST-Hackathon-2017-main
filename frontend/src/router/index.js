@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Categories from '../components/indexPage/categories'
+import Categories from '../components/category/categories'
 import IndexPage from '../components/indexPage/index'
 
 Vue.use(Router)

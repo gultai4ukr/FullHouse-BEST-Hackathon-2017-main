@@ -1,5 +1,5 @@
 <template>
-  <!--v-for="category in categories"-->
+  <h1>HELLO</h1>
 </template>
 
 <script>

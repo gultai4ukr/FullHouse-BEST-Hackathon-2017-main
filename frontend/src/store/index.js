@@ -8,7 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     searchQuery: '',
-    showCategory: false
+    showCategory: false,
     showResults: false,
     results: []
   },
