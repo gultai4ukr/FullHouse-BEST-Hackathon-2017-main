@@ -40,6 +40,18 @@ class EventsListAPITest(APITestCase):
             'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
         })
 
+    def test_get_events_by_date(self):
+
+        response = self.client.get(
+            '/search/events/?date=Today'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 10)
+        self.assertEqual(set(response.data[0].keys()), {
+            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+        })
+
     def test_get_events_with_pagination(self):
 
         response = self.client.get(

@@ -28,18 +28,19 @@ class EventsGetAPIView(views.APIView):
         category = request.query_params.get('category', "")
         location = request.query_params.get('location', "")
         keywords = request.query_params.get('keywords', "")
+        date = request.query_params.get('date', "")
         page_number = request.query_params.get('page_number', "")
 
-        if not category and not location and not keywords:
+        if not category and not location and not keywords and not date:
             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         if category and category not in self.CATEGORIES:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         response = requests.get(
             "{base_url}?app_key={app_key}&category={category}&location={location}&"
-            "keywords={keywords}&page_number={page_number}".format(
-                base_url=self.BASE_URL, category=category, location=location,
-                keywords=keywords, app_key=secrets.EVENTFUL_API_KEY, page_number=page_number
+            "keywords={keywords}&date={date}&page_number={page_number}".format(
+                base_url=self.BASE_URL, category=category, location=location, keywords=keywords,
+                app_key=secrets.EVENTFUL_API_KEY, date=date, page_number=page_number
             )
         )
 
