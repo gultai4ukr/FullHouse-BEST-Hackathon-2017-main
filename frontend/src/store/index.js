@@ -8,6 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     searchQuery: '',
+    showCategory: false
     showResults: false,
     results: []
   },
@@ -39,7 +40,7 @@ const store = new Vuex.Store({
     // search ({ commit }, query) {
     //   const url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${query}`
     //   let result = ''
-      
+
     //   Vue.http.jsonp(url).then((res => {
     //     result = res.body
     //     commit('SET', result)
