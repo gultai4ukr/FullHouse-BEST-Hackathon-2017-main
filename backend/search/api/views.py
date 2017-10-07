@@ -1,7 +1,6 @@
 import requests
 import xml.etree.ElementTree as ET
-
-from django.conf import settings
+from backend import secrets
 
 from rest_framework import status
 from rest_framework import views
@@ -40,7 +39,7 @@ class EventsGetAPIView(views.APIView):
             "{base_url}?app_key={app_key}&category={category}&location={location}&"
             "keywords={keywords}&page_number={page_number}".format(
                 base_url=self.BASE_URL, category=category, location=location,
-                keywords=keywords, app_key=settings.EVENTFUL_API_KEY, page_number=page_number
+                keywords=keywords, app_key=secrets.EVENTFUL_API_KEY, page_number=page_number
             )
         )
 
