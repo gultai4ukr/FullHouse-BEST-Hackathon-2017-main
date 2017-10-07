@@ -7,17 +7,32 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    searchQuery: ''
+    searchQuery: '',
+    showResults: false,
+    results: []
   },
   mutations: {
     setQuery (state, value) {
       console.log('Called setQuery')
       state.searchQuery = value
+    },
+    setResults (state, value) {
+      console.log('Called setResults')
+      state.results = value
+    },
+    showResultsBlock (state) {
+      state.showResults = !state.showResults
     }
   },
   getters: {
     query (state) {
       return state.searchQuery
+    },
+    results (state) {
+      return state.results
+    },
+    showResults (state) {
+      return state.showResults
     }
   },
   actions: {
