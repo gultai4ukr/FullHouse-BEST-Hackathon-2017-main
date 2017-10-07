@@ -43,7 +43,7 @@ class EventsListAPITest(APITestCase):
     def test_get_events_by_date(self):
 
         response = self.client.get(
-            '/search/events/?date=Today'
+            '/search/events/?from_date=20170909&to_date=20170913'
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
