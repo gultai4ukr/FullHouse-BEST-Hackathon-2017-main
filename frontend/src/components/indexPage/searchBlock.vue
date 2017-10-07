@@ -1,20 +1,27 @@
 <template>
   <div class="searchBlock">
-    <input v-model="searchQuery"></input>
+    <input v-model="searchQuery" />
   </div>
 </template>
 
 <script>
+let initParam = {
+  queryParam: ''
+}
+
 export default {
   data () {
     return {
-      searchQuery: ''
+      searchQuery: '',
     }
   },
   watch: {
     searchQuery: function (val) {
       this.$store.commit('setQuery', val)
-      console.log(this.$store.getters.query)
+      /*initParam.queryParam = this.$store.getters.query;
+      this.$http.get('').then(res => {
+        console.log(res);
+      }).catch(e => console.log(e))*/
     }
   }
 }
