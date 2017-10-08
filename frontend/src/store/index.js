@@ -39,14 +39,12 @@ const store = new Vuex.Store({
   actions: {
     searchByKeyword ({ commit }, query) {
       console.log('called API')
-      const keys = '?FOURSQUARE_CLIENT_ID=ZPE3IBJSHLWPLC1TGFRQJNV4C3LPJ2FMQ2H3Y5UJ5K5A3FEA?FOURSQUARE_CLIENT_SECRET=CPYVSTMRCV32XVMA3MELMP5HQRQZ3WHQCR0G3BX5U0Q5HWNI'
-      const url = `https://api.foursquare.com/v2/venues/`
+      const url = `http://konchytsv.pythonanywhere.com/search/events/?keyword=`
       let result = ''
 
-      Vue.http.get(url).then((res => {
-        result = res.body
-        console.log(result)
-        //commit('setKeywordsResults', result)
+      Vue.http.get(url + query).then((res => {
+        result = res.body.response.venues
+        commit('setKeywordsResults', result)
       })).catch(err => {
         console.log(err)
       })
