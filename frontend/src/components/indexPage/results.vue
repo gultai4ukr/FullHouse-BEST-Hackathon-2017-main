@@ -2,12 +2,13 @@
   <div class="resultsBlock">
     <div v-for="result in results">
       <div class="resultBlock">
-        
         <img v-bind:src="result.img" />
         <div class="title">{{ result.title | cutBrackets }}</div>
         <div class="description" v-html="result.description"></div>
         <div class="time">{{ result.time }}</div>
-        <div class="location">{{ result.city_name }} {{ result.country_name }}</div>
+        <br />
+        
+       <icon name="map-marker" class="icon" ></icon> <font class="location">{{ result.city_name }} {{ result.country_name }}</font>
       </div>
     </div>
   </div>
@@ -20,12 +21,14 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      filteredResults: ''
+      filteredResults: '',
+      showHotelModal: false
     }
   },
   computed: {
     ...mapGetters({
-      results: 'keywordsResults'
+      results: 'keywordsResults',
+      hotels: 'hotelsResults'
     })
   },
   filters: {
@@ -52,6 +55,8 @@ export default {
   white-space: wrap;
   overflow: hidden;
   padding: 10px;
+  height: 100px;
+  float: left;
 }
 
 .resultsBlock {
@@ -65,7 +70,7 @@ export default {
   font-family: Montserrat;
   margin: 5% auto;
   border: none;
-  background-color: #F5F7F9;
+  background-color: #fff;
   -webkit-box-shadow: 0px 4px 15px -1px rgba(140,160,183,1);
   -moz-box-shadow: 0px 4px 15px -1px rgba(140,160,183,1);
   box-shadow: 0px 4px 15px -1px rgba(140,160,183,1);

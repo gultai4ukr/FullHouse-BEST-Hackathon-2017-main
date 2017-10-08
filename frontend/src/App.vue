@@ -21,7 +21,6 @@ export default {
 
 html, body {
   background: url(./icons/bg.png) no-repeat center center fixed;
-  background-size: auto 100%;
-  background-repeat: no-repeat;
+  background-size: 100%;
 }
 </style>

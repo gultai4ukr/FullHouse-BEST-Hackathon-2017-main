@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     searchQuery: '',
     keywordsResults: [],
+    hotelsResults: [],
     showCategory: false,
     showResults: false,
     results: []
@@ -23,6 +24,12 @@ const store = new Vuex.Store({
     },
     setKeywordsResults (state, value) {
       state.keywordsResults = value
+    },
+    setHotelsResults (state, value) {
+      state.hotelsResults = value
+    },
+    toggleLoader (state) {
+      state.loader = !state.loader
     }
   },
   getters: {
@@ -34,16 +41,22 @@ const store = new Vuex.Store({
     },
     keywordsResults (state) {
       return state.keywordsResults
+    },
+    hotelsResults (state) {
+      return state.hotelsResults
     }
   },
   actions: {
     searchByKeyword ({ commit }, query) {
-      console.log('called API')
       const url = `http://konchytsv.pythonanywhere.com/search/events/?keyword=`
       let result = ''
 
       Vue.http.get(url + query).then((res => {
-        result = res.body.response.venues
+        result = res.body
+        for (let i = 0; i < result.length; i++) {
+          const imgURL = getImage(query)
+          result[i].img = imgURL
+        }
         commit('setKeywordsResults', result)
       })).catch(err => {
         console.log(err)
@@ -53,3 +66,11 @@ const store = new Vuex.Store({
 })
 
 export default store
+
+function getImage (cat) {
+  return `http://loremflickr.com/320/${getRandomInt(210, 258)}/${cat}`
+}
+
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}

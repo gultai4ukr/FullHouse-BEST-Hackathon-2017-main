@@ -1,6 +1,8 @@
 <template>
   <div class="headerMenu">
-    <img src="../../icons/logo.svg" class="Combined-Shape"><font class="Billio">Bill.io</font> <router-link class="link" to="/categories">Categories</router-link>
+    <img src="../../icons/logo.svg" class="Combined-Shape"><font class="Billio">Bill.io</font> 
+      <router-link class="link" to="/categories">Categories</router-link>
+      <router-link class="link" to="/hotels">Hotels</router-link>
   </div>
 </template>
 
