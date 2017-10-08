@@ -20,6 +20,8 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html, body {
-  background: linear-gradient(59deg, #08aeea, #2af598) no-repeat center center fixed; 
+  background: url(./icons/bg.png) no-repeat center center fixed;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
 }
 </style>

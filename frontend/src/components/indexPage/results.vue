@@ -1,6 +1,6 @@
 <template>
   <div class="resultsBlock">
-    <div v-for="result in filteredResults">
+    <div v-for="result in results">
       <div class="resultBlock">
         
         <img v-bind:src="result.img" />
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -31,21 +32,6 @@ export default {
     cutBrackets: function (value) {
       if (value.match(/"/i)) return value.replace('"', '')
       return value
-    }
-  },
-  watch: {
-    results: function (val) {
-      this.filterImages(val)
-    }
-  },
-  methods: {
-    filterImages: function (objects) {
-      for (let i = 0; i < objects.length; i++) {
-        objects[i].img = "https://image.jimcdn.com/app/cms/image/transf/none/path/s38008646b8c4413d/image/ib1787d70c86e8c6b/version/1494078317/image.png"
-        //else objects[i].img = objects[i].image.medium.url
-        objects[i].description = objects[i].description.substring(0, 100)
-      }
-      this.filteredResults = objects
     }
   }
 }

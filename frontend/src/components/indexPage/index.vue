@@ -1,15 +1,15 @@
 <template>
   <div class="indexPage">
-    <!-- v-if="categories"-->
+    <HeaderMenu></HeaderMenu>
     <SearchBlock></SearchBlock>
     <ResultBlock v-if="showResults"></ResultBlock>
   </div>
 </template>
 
 <script>
-  //Imports
 import SearchBlock from './searchBlock'
 import ResultBlock from './results'
+import HeaderMenu from './HeaderMenu'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -19,7 +19,7 @@ export default {
     }
   },
   components: {
-    SearchBlock, ResultBlock
+    SearchBlock, ResultBlock, HeaderMenu
   },
   computed: {
     ...mapGetters({
