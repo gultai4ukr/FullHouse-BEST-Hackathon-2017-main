@@ -21,8 +21,18 @@ class EventsGetAPIView(views.APIView):
     ]
 
     DATA_KEYS = [
-        'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+        'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
     ]
+
+    HEADERS = {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive",
+        "Host": "api.qwant.com",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:54.0) Gecko/20100101 Firefox/54.0"
+    }
 
     def get(self, request, *args, **kwargs):
         category = request.query_params.get('category', "")
@@ -51,6 +61,12 @@ class EventsGetAPIView(views.APIView):
                 data = {}
                 for key in self.DATA_KEYS:
                     data[key] = e[key]
+                res = requests.get(
+                    "https://api.qwant.com/api/search/images?count=1&q={q}".format(q=data['title']),
+                    headers=self.HEADERS
+                )
+                if res.ok:
+                    data['image'] = res.json()['data']['result']['items'][0]['media']
                 events.append(data)
             return Response(events)
         else:
