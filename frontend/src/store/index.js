@@ -10,7 +10,8 @@ const store = new Vuex.Store({
     hotelsResults: [],
     showCategory: false,
     showResults: false,
-    results: []
+    results: [],
+    categoriesList: []
   },
   mutations: {
     setQuery (state, value) {
@@ -25,11 +26,8 @@ const store = new Vuex.Store({
     setKeywordsResults (state, value) {
       state.keywordsResults = value
     },
-    setHotelsResults (state, value) {
-      state.hotelsResults = value
-    },
-    toggleLoader (state) {
-      state.loader = !state.loader
+    setCategories (state, value) {
+      state.categoriesList = value
     }
   },
   getters: {
@@ -42,8 +40,9 @@ const store = new Vuex.Store({
     keywordsResults (state) {
       return state.keywordsResults
     },
-    hotelsResults (state) {
-      return state.hotelsResults
+
+    showCategories (state) {
+      return state.categoriesList
     }
   },
   actions: {
@@ -58,6 +57,17 @@ const store = new Vuex.Store({
           result[i].img = imgURL
         }
         commit('setKeywordsResults', result)
+      })).catch(err => {
+        console.log(err)
+      })
+    },
+    searchCategory: function ({commit}, query) {
+      //REQUEST
+      const url = `http://konchytsv.pythonanywhere.com/search/events/${query}`
+      let categoriesList = '';
+      Vue.http.get(url).then((res => {
+        categoriesList = res.body;
+        commit('setCategories', categoriesList)
       })).catch(err => {
         console.log(err)
       })

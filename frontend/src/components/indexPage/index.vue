@@ -1,4 +1,5 @@
 <template>
+
   <div class="indexPage">
     <HeaderMenu></HeaderMenu>
     <SearchBlock></SearchBlock>
@@ -15,7 +16,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-    
+
     }
   },
   components: {

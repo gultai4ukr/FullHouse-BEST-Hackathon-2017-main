@@ -13,7 +13,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_by_keywords(self):
@@ -25,7 +25,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_by_location(self):
@@ -37,7 +37,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_by_date(self):
@@ -49,7 +49,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_with_pagination(self):
@@ -61,7 +61,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_without_params(self):
@@ -73,7 +73,7 @@ class EventsListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 10)
         self.assertEqual(set(response.data[0].keys()), {
-            'title', 'description', 'start_time', 'url', 'country_name', 'city_name', 'image'
+            'id', 'title', 'description', 'start_time', 'url', 'country_name', 'city_name'
         })
 
     def test_get_events_with_incorrect_category(self):
@@ -83,3 +83,15 @@ class EventsListAPITest(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class EventGetAPITest(APITestCase):
+
+    def test_get_events_by_category(self):
+
+        response = self.client.get(
+            '/search/events/E0-001-000278174-6/'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, {})
